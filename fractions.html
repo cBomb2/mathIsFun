@@ -65,7 +65,7 @@
         document.getElementById("answer").innerText = "correct!";
         var next = document.createElement("BUTTON");
         next.innerText = "next";
-        next.setAttribute("onclick", "nextPage()");
+        next.addEventListener("click", nextPage);
         document.body.appendChild(next);
       } else {
         document.getElementById("answer").innerText = "incorrect. Try reading the explanation again." + answer;
