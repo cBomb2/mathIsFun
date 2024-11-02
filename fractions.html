@@ -27,44 +27,60 @@
 <body>
   <p>let's start by adding fractions. To add fractions, you need to add the top numbers. (don't simpilify)</p>
   <br>
+  <div id="neg1"></div>
   <div class="frac">
     <span id="num">1</span>
     <span class="symbol"/></span>
     <span class="bottom" id="den">5</span>
   </div>
   +
+  <div id="neg2"></div>
   <div class="frac">
     <span id = "num2">2</span>
     <span class="symbol"></span>
     <span class="bottom" id="den2">5</span>
   </div>
+  <div id="num2End"></div>
   <br>
   <input type="text" id="your answer"></input>
   <button id="checkAnswer" onclick="checkAnswer()">check</button>
   <div id="answer"></div>
   <script>
-  const num1 = Math.round(Math.random() * 4 + 1);
-  const num2 = Math.round(Math.random() * 4 + 1);
-  const den = Math.round(Math.random() * 10+3);
-  document.getElementById("num").innerText = num1;
-  document.getElementById("num2").innerText = num2;
-  document.getElementById("den").innerText = den;
-  document.getElementById("den2").innerText = den;
-  const answer = (num1 + num2).toString() + "/" + den.toString();
-  function checkAnswer(){
-    const text = document.getElementById("your answer").value;
-    if(text == answer){
-      document.getElementById("answer").innerText = "correct!";
-      var next = document.createElement("BUTTON");
-      next.innerText = "next";
-      next.setAttribute("onclick", "nextPage()");
-      document.body.appendChild(next);
-    } else {
-      document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
+    const num1 = Math.round(Math.random() * 4 + 1);
+    const neg = () => {
+      if(Math.random > 0.5){
+        return -1;
+      } else {
+        return 1;
+      }
+    };
+    const num2 = Math.round(Math.random() * 4 + 1);
+    const den = Math.round(Math.random() * 10+3);
+    document.getElementById("num").innerText = num1;
+    document.getElementById("num2").innerText = num2;
+    document.getElementById("den").innerText = den;
+    document.getElementById("den2").innerText = den;
+    document.getElementById("neg1").innerText = neg();
+    const neg2 = neg();
+    if(neg2 == "-"){
+      document.getElementById("neg2").innerText = "(-";
+      document.getElementById("neg2End").innerText = ")";
     }
-  }
-  function nextPage(){
-    windows.location.replace("/fracions2.html");
-  }
+    const answer = (num1 + num2).toString() + "/" + den.toString();
+    function checkAnswer(){
+      const text = document.getElementById("your answer").value;
+      if(text == answer){
+        document.getElementById("answer").innerText = "correct!";
+        var next = document.createElement("BUTTON");
+        next.innerText = "next";
+        next.setAttribute("onclick", "nextPage()");
+        document.body.appendChild(next);
+      } else {
+        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
+      }
+    }
+    function nextPage(){
+      windows.location.replace("/fracions2.html");
+    }
 </script>
 </body>
