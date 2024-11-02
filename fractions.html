@@ -13,6 +13,9 @@
     display: block;
     padding: 0.1em;
 }
+.div neg {
+    display: inline;
+}
 .frac span.bottom {
     border-top: thin solid black;
 }
@@ -25,48 +28,37 @@
     </style>
 </head>
 <body>
-  <p>let's start by adding fractions. To add fractions, you need to add the top numbers. (don't simpilify)</p>
-  <br>
-  <div id="neg1"></div>
+  <p>let's start by adding fractions. To add fractions, you need to add the top numbers. If it is different signs, subtract the top numbers. (don't simpilify)</p>
+  <span id="neg1"></span>
   <div class="frac">
     <span id="num">1</span>
     <span class="symbol"/></span>
     <span class="bottom" id="den">5</span>
   </div>
   +
-  <div id="neg2"></div>
+  <span id="neg2">-</span>
   <div class="frac">
     <span id = "num2">2</span>
     <span class="symbol"></span>
     <span class="bottom" id="den2">5</span>
   </div>
-  <div id="num2End"></div>
   <br>
   <input type="text" id="your answer"></input>
   <button id="checkAnswer" onclick="checkAnswer()">check</button>
   <div id="answer"></div>
   <script>
     const num1 = Math.round(Math.random() * 4 + 1);
-    const neg = () => {
-      if(Math.random > 0.5){
-        return -1;
-      } else {
-        return 1;
-      }
-    };
     const num2 = Math.round(Math.random() * 4 + 1);
     const den = Math.round(Math.random() * 10+3);
+    const neg1 = Math.random() < 0.5 ? -1 : 1;
+    const neg2 = Math.random() < 0.5 ? -1 : 1;
+    document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
+    document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
     document.getElementById("num").innerText = num1;
     document.getElementById("num2").innerText = num2;
     document.getElementById("den").innerText = den;
     document.getElementById("den2").innerText = den;
-    document.getElementById("neg1").innerText = neg();
-    const neg2 = neg();
-    if(neg2 == "-"){
-      document.getElementById("neg2").innerText = "(-";
-      document.getElementById("neg2End").innerText = ")";
-    }
-    const answer = (num1 + num2).toString() + "/" + den.toString();
+    const answer = ((num1 * neg1 ) + (num2 * neg2)).toString() + "/" + den.toString();
     function checkAnswer(){
       const text = document.getElementById("your answer").value;
       if(text == answer){
@@ -76,7 +68,7 @@
         next.setAttribute("onclick", "nextPage()");
         document.body.appendChild(next);
       } else {
-        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
+        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again." + answer;
       }
     }
     function nextPage(){
