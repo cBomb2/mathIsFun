@@ -1,3 +1,89 @@
 <head>
-  <title>subtracting fractions</title>
+  <title>adding fractions</title>
+  <h1>adding fractions</h1>
+  <style>
+    .frac {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    letter-spacing: 0.001em;
+    text-align: center;
+}
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.div neg {
+    display: inline;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.bottom2 {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+} 
+    </style>
 </head>
+<body>
+  <p>now, let's add fractions, but, with a twist. This time, there will be different BOTTOM numbers and you will need to add them. To do this, you will need to find the LCD (least common denominator), the LCD is the smallest number you can multiply something to get from both denominators. Then, multiply the top and bottom numbers (so the fraction stays the same) to make the bottom numbers the same. Finally, you add. (don't simpilify)</p>
+  <span id="neg1"></span>
+  <div class="frac">
+    <span id="num">1</span>
+    <span class="symbol"/></span>
+    <span class="bottom" id="den">5</span>
+  </div>
+  +
+  <span id="neg2">-</span>
+  <div class="frac">
+    <span id = "num2">2</span>
+    <span class="symbol"></span>
+    <span class="bottom" id="den2">5</span>
+  </div>
+  <br>
+  <input type="text" id="your answer"></input>
+  <button id="checkAnswer" onclick="checkAnswer()">check</button>
+  <div id="answer"></div>
+  <script>
+    const num1 = Math.round(Math.random() * 3 + 1);
+    const num2 = Math.round(Math.random() * 3 + 1);
+    const den1 = Math.round(Math.random() * 5 + 5);
+    const den2 = Math.round(Math.random() * 5 + 5);
+    const neg1 = Math.random() < 0.5 ? -1 : 1;
+    const neg2 = Math.random() < 0.5 ? -1 : 1;
+    document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
+    document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
+    document.getElementById("num").innerText = num1;
+    document.getElementById("num2").innerText = num2;
+    document.getElementById("den").innerText = den1;
+    document.getElementById("den2").innerText = den2;
+    function LCM(num1, num2){
+      let min = (num1 > num2) ? num1 : num2;
+      while (true) {
+        if (min % num1 == 0 && min % num2 == 0) {
+          return min;
+          break;
+        }
+        min++;
+      }   
+    }
+    const answer = ((num1*neg1*(LCM(den1, den2)/den1)) + (num2*neg2*(LCM(den1, den2)/den2))).toString() + "/" + LCM(den1, den2).toString();
+    function checkAnswer(){
+      const text = document.getElementById("your answer").value;
+      if(text == answer){
+        document.getElementById("answer").innerText = "correct!";
+        var next = document.createElement("BUTTON");
+        next.innerText = "next";
+        next.setAttribute("onclick", "nextPage()");
+        document.body.appendChild(next);
+      } else {
+        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again." + answer;
+      }
+    }
+    function nextPage(){
+      windows.location.replace("/fracions3.html");
+    }
+</script>
+</body>
