@@ -1,0 +1,79 @@
+<head>
+  <title>subtracting fractions</title>
+  <h1>subtracting fractions</h1>
+  <style>
+    .frac {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    letter-spacing: 0.001em;
+    text-align: center;
+}
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.div neg {
+    display: inline;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.bottom2 {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+} 
+    </style>
+</head>
+<body>
+  <p>Now, let's multiply fractions. Multiplying fractions is a little different. To multiply, you need to multiply the top two numbers, and the bottom two numbers. (don't simpilify)</p>
+  <span id="neg1"></span>
+  <div class="frac">
+    <span id="num">1</span>
+    <span class="symbol"/></span>
+    <span class="bottom" id="den">5</span>
+  </div>
+  ×
+  <span id="neg2">-</span>
+  <div class="frac">
+    <span id = "num2">2</span>
+    <span class="symbol"></span>
+    <span class="bottom" id="den2">5</span>
+  </div>
+  <br>
+  <input type="text" id="your answer"></input>
+  <button id="checkAnswer" onclick="checkAnswer()">check</button>
+  <div id="answer"></div>
+  <script>
+    const num1 = Math.round(Math.random() * 3 + 1);
+    const num2 = Math.round(Math.random() * 3 + 1);
+    const den1 = Math.round(Math.random() * 5 + 5);
+    const den2 = Math.round(Math.random() * 5 + 5);
+    const neg1 = Math.random() < 0.5 ? -1 : 1;
+    const neg2 = Math.random() < 0.5 ? -1 : 1;
+    document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
+    document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
+    document.getElementById("num").innerText = num1;
+    document.getElementById("num2").innerText = num2;
+    document.getElementById("den").innerText = den1;
+    document.getElementById("den2").innerText = den2;
+    const answer = ((num1 * neg1 ) * (num2 * neg2)).toString() + "/" + (den1 * den2).toString();
+    function checkAnswer(){
+      const text = document.getElementById("your answer").value;
+      if(text == answer){
+        document.getElementById("answer").innerText = "correct!";
+        var next = document.createElement("BUTTON");
+        next.innerText = "next";
+        next.setAttribute("onclick", "nextPage()");
+        document.body.appendChild(next);
+      } else {
+        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again." + answer;
+      }
+    }
+    function nextPage(){
+      windows.location.replace("/mathIsFun/fractions6.html");
+    }
+</script>
+</body>
