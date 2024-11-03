@@ -52,6 +52,7 @@
     const den = Math.round(Math.random() * 10+3);
     const neg1 = Math.random() < 0.5 ? -1 : 1;
     const neg2 = Math.random() < 0.5 ? -1 : 1;
+    var correct = 0;
     document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
     document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
     document.getElementById("num").innerText = num1;
@@ -63,12 +64,26 @@
       const text = document.getElementById("your answer").value;
       if(text == answer){
         document.getElementById("answer").innerText = "correct!";
-        var next = document.createElement("BUTTON");
-        next.innerText = "next";
-        next.addEventListener("click", nextPage);
-        document.body.appendChild(next);
+        correct += 1;
+        if(correct == 3){
+          var next = document.createElement("BUTTON");
+          next.innerText = "next";
+          next.addEventListener("click", nextPage);
+          document.body.appendChild(next);
+        } else {
+          num1 = Math.round(Math.random() * 3 + 1);
+          num2 = Math.round(Math.random() * 3 + 1);
+          den = Math.round(Math.random() * 5 + 5);
+          neg1 = Math.random() < 0.5 ? -1 : 1;
+          neg2 = Math.random() < 0.5 ? -1 : 1;
+        }
       } else {
-        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again." + answer;
+        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
+        num1 = Math.round(Math.random() * 3 + 1);
+        num2 = Math.round(Math.random() * 3 + 1);
+        den = Math.round(Math.random() * 5 + 5);
+        neg1 = Math.random() < 0.5 ? -1 : 1;
+        neg2 = Math.random() < 0.5 ? -1 : 1;
       }
     }
     function nextPage(){
