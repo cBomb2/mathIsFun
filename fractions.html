@@ -47,14 +47,14 @@
   <button id="checkAnswer" onclick="checkAnswer()">check</button>
   <div id="answer"></div>
   <script>
-    const num1 = Math.round(Math.random() * 4 + 1);
-    const num2 = Math.round(Math.random() * 4 + 1);
-    const den = Math.round(Math.random() * 10+3);
-    const neg1 = Math.random() < 0.5 ? -1 : 1;
-    const neg2 = Math.random() < 0.5 ? -1 : 1;
+    var num1 = Math.round(Math.random() * 4 + 1);
+    var num2 = Math.round(Math.random() * 4 + 1);
+    var den = Math.round(Math.random() * 10+3);
+    var neg1 = Math.random() < 0.5 ? -1 : 1;
+    var neg2 = Math.random() < 0.5 ? -1 : 1;
+    var answer = ((num1 * neg1 ) + (num2 * neg2)).toString() + "/" + den.toString();
     var correct = 0;
     resetQuestion();
-    const answer = ((num1 * neg1 ) + (num2 * neg2)).toString() + "/" + den.toString();
     function checkAnswer(){
       const text = document.getElementById("your answer").value;
       if(text == answer){
@@ -79,6 +79,7 @@
       den = Math.round(Math.random() * 5 + 5);
       neg1 = Math.random() < 0.5 ? -1 : 1;
       neg2 = Math.random() < 0.5 ? -1 : 1;
+      answer = ((num1 * neg1 ) + (num2 * neg2)).toString() + "/" + den.toString();
       document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
       document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
       document.getElementById("num").innerText = num1;
