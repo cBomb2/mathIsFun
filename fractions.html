@@ -58,6 +58,7 @@
     function checkAnswer(){
       const text = document.getElementById("your answer").value;
       if(text == answer){
+        document.getElementById("your answer").value = "";
         document.getElementById("answer").innerText = "correct!";
         correct += 1;
         if(correct == 3){
@@ -70,6 +71,7 @@
         }
       } else {
         document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
+        document.getElementById("your answer").innerText = "";
         resetQuestion();
       }
     }
