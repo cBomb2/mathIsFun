@@ -53,12 +53,7 @@
     const neg1 = Math.random() < 0.5 ? -1 : 1;
     const neg2 = Math.random() < 0.5 ? -1 : 1;
     var correct = 0;
-    document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
-    document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
-    document.getElementById("num").innerText = num1;
-    document.getElementById("num2").innerText = num2;
-    document.getElementById("den").innerText = den;
-    document.getElementById("den2").innerText = den;
+    resetQuestion();
     const answer = ((num1 * neg1 ) + (num2 * neg2)).toString() + "/" + den.toString();
     function checkAnswer(){
       const text = document.getElementById("your answer").value;
