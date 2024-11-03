@@ -71,20 +71,25 @@
           next.addEventListener("click", nextPage);
           document.body.appendChild(next);
         } else {
-          num1 = Math.round(Math.random() * 3 + 1);
-          num2 = Math.round(Math.random() * 3 + 1);
-          den = Math.round(Math.random() * 5 + 5);
-          neg1 = Math.random() < 0.5 ? -1 : 1;
-          neg2 = Math.random() < 0.5 ? -1 : 1;
+          resetQuestion();
         }
       } else {
         document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
-        num1 = Math.round(Math.random() * 3 + 1);
-        num2 = Math.round(Math.random() * 3 + 1);
-        den = Math.round(Math.random() * 5 + 5);
-        neg1 = Math.random() < 0.5 ? -1 : 1;
-        neg2 = Math.random() < 0.5 ? -1 : 1;
+        resetQuestion();
       }
+    }
+    function resetQuestion(){
+      num1 = Math.round(Math.random() * 3 + 1);
+      num2 = Math.round(Math.random() * 3 + 1);
+      den = Math.round(Math.random() * 5 + 5);
+      neg1 = Math.random() < 0.5 ? -1 : 1;
+      neg2 = Math.random() < 0.5 ? -1 : 1;
+      document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
+      document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
+      document.getElementById("num").innerText = num1;
+      document.getElementById("num2").innerText = num2;
+      document.getElementById("den").innerText = den;
+      document.getElementById("den2").innerText = den;   
     }
     function nextPage(){
       window.location.assign("/mathIsFun/fractions2.html");
