@@ -47,18 +47,12 @@
   <button id="checkAnswer" onclick="checkAnswer()">check</button>
   <div id="answer"></div>
   <script>
-    const num1 = Math.round(Math.random() * 3 + 1);
-    const num2 = Math.round(Math.random() * 3 + 1);
-    const den1 = Math.round(Math.random() * 5 + 5);
-    const den2 = Math.round(Math.random() * 5 + 5);
-    const neg1 = Math.random() < 0.5 ? -1 : 1;
-    const neg2 = Math.random() < 0.5 ? -1 : 1;
-    document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
-    document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
-    document.getElementById("num").innerText = num1;
-    document.getElementById("num2").innerText = num2;
-    document.getElementById("den").innerText = den1;
-    document.getElementById("den2").innerText = den2;
+    var num1 = Math.round(Math.random() * 3 + 1);
+    var num2 = Math.round(Math.random() * 3 + 1);
+    var den1 = Math.round(Math.random() * 5 + 5);
+    var den2 = Math.round(Math.random() * 5 + 5);
+    var neg1 = Math.random() < 0.5 ? -1 : 1;
+    var neg2 = Math.random() < 0.5 ? -1 : 1;
     function LCM(num1, num2){
       let min = (num1 > num2) ? num1 : num2;
       while (true) {
@@ -69,21 +63,46 @@
         min++;
       }   
     }
-    const answer = ((num1*neg1*(LCM(den1, den2)/den1)) + (num2*neg2*(LCM(den1, den2)/den2))).toString() + "/" + LCM(den1, den2).toString();
+    var answer = ((num1*neg1*(LCM(den1, den2)/den1)) + (num2*neg2*(LCM(den1, den2)/den2))).toString() + "/" + LCM(den1, den2).toString();
+    var correct = 0
+    resetQuestion();
     function checkAnswer(){
       const text = document.getElementById("your answer").value;
       if(text == answer){
         document.getElementById("answer").innerText = "correct!";
-        var next = document.createElement("BUTTON");
-        next.innerText = "next";
-        next.setAttribute("onclick", "nextPage()");
-        document.body.appendChild(next);
+        document.getElementById("your answer").value = "";
+        correct += 1;
+        if(correct == 3){
+          var next = document.createElement("BUTTON");
+          next.innerText = "next";
+          next.addEventListener("click", nextPage);
+          document.body.appendChild(next);
+        } else {
+          resetQuestion();
+        }
       } else {
-        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again." + answer;
+        document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
+        document.getElementById("your answer").value = "";
+        resetQuestion();
       }
     }
+    function resetQuestion(){
+      num1 = Math.round(Math.random() * 3 + 1);
+      num2 = Math.round(Math.random() * 3 + 1);
+      den1 = Math.round(Math.random() * 5 + 5);
+      den2 = Math.round(Math.random() * 5 + 5);
+      neg1 = Math.random() < 0.5 ? -1 : 1;
+      neg2 = Math.random() < 0.5 ? -1 : 1;
+      answer = ((num1*neg1*(LCM(den1, den2)/den1)) + (num2*neg2*(LCM(den1, den2)/den2))).toString() + "/" + LCM(den1, den2).toString();
+      document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
+      document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
+      document.getElementById("num").innerText = num1;
+      document.getElementById("num2").innerText = num2;
+      document.getElementById("den").innerText = den1;
+      document.getElementById("den2").innerText = den2;   
+    }
     function nextPage(){
-      window.location.assign("/mathIsFun/fractions3.html");
+      window.location.assign("/mathIsFun/fractions2.html");
     }
 </script>
 </body>
