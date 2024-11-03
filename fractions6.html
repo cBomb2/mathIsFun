@@ -59,7 +59,7 @@
     document.getElementById("num2").innerText = num2;
     document.getElementById("den").innerText = den1;
     document.getElementById("den2").innerText = den2;
-    const answer = ((num1 * neg1 ) * den2).toString() + "/" + (den1 * neg2).toString();
+    const answer = ((num1 * neg1 * neg2) * den2).toString() + "/" + (den1 * num2).toString();
     function checkAnswer(){
       const text = document.getElementById("your answer").value;
       if(text == answer){
