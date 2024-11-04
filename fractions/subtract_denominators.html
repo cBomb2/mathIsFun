@@ -18,7 +18,7 @@
 }
 .frac span.bottom {
     border-top: thin solid black;
-}
+
 .frac span.bottom2 {
     border-top: thin solid black;
 }
@@ -90,6 +90,7 @@
       const text = document.getElementById("your answer").value;
       if(text == answer){
         document.getElementById("answer").innerText = "correct!";
+        correct += 0;
         if(correct == 3){
           var next = document.createElement("BUTTON");
           next.innerText = "next";
