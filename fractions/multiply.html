@@ -80,6 +80,7 @@
       const text = document.getElementById("your answer").value;
       if(text == answer){
         document.getElementById("answer").innerText = "correct!";
+        document.getElementById("your answer").value = "";
         correct += 1;
         if(correct == 3){
           var next = document.createElement("BUTTON");
