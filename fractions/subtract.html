@@ -47,53 +47,50 @@
   <button id="checkAnswer" onclick="checkAnswer()">check</button>
   <div id="answer"></div>
   <script>
-    const num1 = Math.round(Math.random() * 4 + 1);
-    const num2 = Math.round(Math.random() * 4 + 1);
-    const den = Math.round(Math.random() * 10+3);
-    const neg1 = Math.random() < 0.5 ? -1 : 1;
-    const neg2 = Math.random() < 0.5 ? -1 : 1;
-    document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
-    document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
-    document.getElementById("num").innerText = num1;
-    document.getElementById("num2").innerText = num2;
-    document.getElementById("den").innerText = den;
-    document.getElementById("den2").innerText = den;
-    const answer = ((num1 * neg1 ) - (num2 * neg2)).toString() + "/" + den.toString();
+    var num1 = Math.round(Math.random() * 4 + 1);
+    var num2 = Math.round(Math.random() * 4 + 1);
+    var den = Math.round(Math.random() * 10+3);
+    var neg1 = Math.random() < 0.5 ? -1 : 1;
+    var neg2 = Math.random() < 0.5 ? -1 : 1;
+    var answer = ((num1 * neg1 ) - (num2 * neg2)).toString() + "/" + den.toString();
     var correct = 0;
-    function generate(){
-      num1 = Math.round(Math.random() * 4 + 1);
-      num2 = Math.round(Math.random() * 4 + 1);
-      den = Math.round(Math.random() * 10+3);
-      neg1 = Math.random() < 0.5 ? -1 : 1;
-      neg2 = Math.random() < 0.5 ? -1 : 1;
-      document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
-      document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
-      document.getElementById("num").innerText = num1;
-      document.getElementById("num2").innerText = num2;
-      document.getElementById("den").innerText = den;
-      document.getElementById("den2").innerText = den;
-      answer = ((num1 * neg1 ) - (num2 * neg2)).toString() + "/" + den.toString();
-    }
+    resetQuestion();
     function checkAnswer(){
       const text = document.getElementById("your answer").value;
       if(text == answer){
+        document.getElementById("your answer").value = "";
         document.getElementById("answer").innerText = "correct!";
         correct += 1;
         if(correct == 3){
           var next = document.createElement("BUTTON");
           next.innerText = "next";
-          next.setAttribute("onclick", "nextPage()");
+          next.addEventListener("click", nextPage);
           document.body.appendChild(next);
         } else {
-          generate();
+          resetQuestion();
         }
       } else {
         document.getElementById("answer").innerText = "incorrect. Try reading the explanation again.";
-        generate();
+        document.getElementById("your answer").innerText = "";
+        resetQuestion();
       }
     }
+    function resetQuestion(){
+      num1 = Math.round(Math.random() * 3 + 1);
+      num2 = Math.round(Math.random() * 3 + 1);
+      den = Math.round(Math.random() * 5 + 5);
+      neg1 = Math.random() < 0.5 ? -1 : 1;
+      neg2 = Math.random() < 0.5 ? -1 : 1;
+      answer = ((num1 * neg1 ) - (num2 * neg2)).toString() + "/" + den.toString();
+      document.getElementById("neg1").innerText = neg1.toString().replace("1", "");
+      document.getElementById("neg2").innerText = neg2.toString().replace("1", "");
+      document.getElementById("num").innerText = num1;
+      document.getElementById("num2").innerText = num2;
+      document.getElementById("den").innerText = den;
+      document.getElementById("den2").innerText = den;   
+    }
     function nextPage(){
-      window.location.assign("/mathIsFun/fractions/subtract_denominators.html");
+      window.location.assign("/mathIsFun/fractions/add_denominators.html");
     }
 </script>
 </body>
